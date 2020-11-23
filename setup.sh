@@ -28,3 +28,29 @@ cd /root && \
     echo 'source /opt/sgxsdk/environment' >> /root/.bashrc && \
     cd /root && \
     rm -rf /root/linux-sgx
+
+#psw
+export PSW_REPO="https://download.01.org/intel-sgx/sgx-linux/2.12/distro/centos8.2-server/sgx_rpm_local_repo.tgz"
+
+cd /root && \
+curl --output /root/repo.tgz $PSW_REPO && \
+cd /root && \
+tar xzf repo.tgz && \
+cd sgx_rpm_local_repo && \
+rpm -ivh ./*.rpm && \
+cd /root && \
+mkdir /var/run/aesmd && \
+rm -rf sgx_rpm_local_repo repo.tgz
+
+
+#rust
+export rust_toolchain=nightly-2020-10-25
+
+cd /root && \
+curl 'https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init' --output /root/rustup-init && \
+chmod +x /root/rustup-init && \
+echo '1' | /root/rustup-init --default-toolchain ${rust_toolchain} && \
+echo 'source /root/.cargo/env' >> /root/.bashrc && \
+/root/.cargo/bin/rustup component add rust-src rls rust-analysis clippy rustfmt && \
+/root/.cargo/bin/cargo install xargo && \
+rm /root/rustup-init && rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
