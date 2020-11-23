@@ -53,4 +53,4 @@ echo '1' | /root/rustup-init --default-toolchain ${rust_toolchain} && \
 echo 'source /root/.cargo/env' >> /root/.bashrc && \
 /root/.cargo/bin/rustup component add rust-src rls rust-analysis clippy rustfmt && \
 /root/.cargo/bin/cargo install xargo && \
-rm /root/rustup-init && rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
+rm -f /root/rustup-init && rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
