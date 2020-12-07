@@ -21,7 +21,7 @@ curl -o binutils.tar.xz https://ftp.gnu.org/gnu/binutils/binutils-2.35.tar.xz &&
 cd /root && \
     git clone --recursive https://github.com/intel/linux-sgx && \
     cd linux-sgx && \
-    git checkout 608fe1df4c7c99433b0b8e9abdd31ba67c79ceb0 && \
+    git checkout 8d0e07655c5ed2f7c6c7153de747931bd8c57164 && \
     ./download_prebuilt.sh && \
     make -j "$(nproc)" sdk_install_pkg && \
     echo -e 'no\n/opt' | ./linux/installer/bin/sgx_linux_x64_sdk_2.12.100.3.bin && \
